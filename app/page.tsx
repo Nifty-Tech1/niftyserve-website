@@ -11,13 +11,20 @@ function Container({ children }: { children: React.ReactNode }) {
   return <div className="max-w-6xl mx-auto px-6 w-full">{children}</div>;
 }
 
-function Button({ children, variant = "primary" }: any) {
+function Button({
+  children,
+  variant = "primary",
+}: {
+  children: React.ReactNode;
+  variant?: "primary" | "ghost";
+}) {
   return (
     <button
       className={clsx(
-        "px-6 py-3 rounded-xl font-semibold transition transform active:scale-[0.98]",
+        "px-6 py-3 rounded-xl font-semibold transition active:scale-[0.98]",
         variant === "primary" && "bg-blue-500 hover:bg-blue-600 text-white",
-        variant === "ghost" && "border border-white/20 hover:bg-white/10 text-white"
+        variant === "ghost" &&
+          "border border-white/20 hover:bg-white/10 text-white",
       )}
     >
       {children}
@@ -25,36 +32,34 @@ function Button({ children, variant = "primary" }: any) {
   );
 }
 
-// ================= NAVBAR =================
+// ================= NAV =================
 
 function Navbar() {
   return (
-    <div className="fixed top-0 w-full z-50 backdrop-blur-xl border-b border-white/10 bg-black/20">
+    <div className="fixed top-0 w-full z-50 backdrop-blur-xl border-b border-white/10 bg-black/30">
       <Container>
         <div className="flex items-center justify-between h-16">
-          <div className="font-semibold tracking-tight">NiftyServe</div>
+          <div className="font-semibold">NiftyServe</div>
 
           <div className="hidden md:flex gap-8 text-sm text-gray-300">
-            <a href="#services" className="hover:text-white transition">Services</a>
-            <a href="#process" className="hover:text-white transition">Process</a>
-            <a href="#contact" className="hover:text-white transition">Contact</a>
+            <a href="#services">Services</a>
+            <a href="#process">Process</a>
+            <a href="#contact">Demo</a>
           </div>
 
-          <Button>Get Started</Button>
+          <Button>Book Demo</Button>
         </div>
       </Container>
     </div>
   );
 }
 
-// ================= HERO (APPLE-LEVEL) =================
+// ================= HERO =================
 
 function Hero() {
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black">
-      
-      {/* ================= LIGHTRAYS LAYER (CRITICAL FIXED WRAPPER) ================= */}
-      <div className="absolute inset-0 w-full h-full">
+    <section className="relative h-screen bg-black overflow-hidden">
+      <div className="absolute inset-0">
         <LightRays
           raysOrigin="top-center"
           raysColor="#3b82f6"
@@ -67,46 +72,41 @@ function Hero() {
           distortion={0.08}
           pulsating={false}
           fadeDistance={1}
-          saturation={1.15}
+          saturation={1.2}
         />
       </div>
 
-      {/* ================= DEPTH LAYER (SOFT VIGNETTE) ================= */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.15),transparent_55%)]" />
       <div className="absolute inset-0 bg-black/60" />
 
-      {/* ================= CONTENT ================= */}
       <div className="relative z-10 h-full flex items-center">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
+            transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <div className="inline-flex items-center px-3 py-1 mb-6 text-xs border border-white/10 bg-white/5 rounded-full text-gray-300">
-              Digital Systems for African Growth
+            <div className="text-xs text-gray-400 mb-4">
+              WhatsApp AI Automation Systems
             </div>
 
-            <h1 className="text-5xl md:text-6xl font-bold leading-[1.05] tracking-tight">
-              Turn Your Business Into a
-              <span className="text-blue-400"> Scalable Digital System</span>
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+              Automate WhatsApp Sales for Your Business in Zambia
             </h1>
 
-            <p className="mt-6 text-gray-300 text-lg leading-relaxed">
-              NiftyServe builds high-performance websites, automation systems,
-              and custom software that help businesses in Zambia operate like modern tech companies.
+            <p className="mt-6 text-gray-300 text-lg">
+              We build AI systems that instantly respond to customers, qualify
+              leads, and help businesses close more sales automatically.
             </p>
 
             <div className="mt-8 flex gap-4">
-              <Button>Start Building</Button>
+              <Button>Book Demo</Button>
               <Button variant="ghost">View Services</Button>
             </div>
 
-            {/* subtle social proof hint */}
-            <div className="mt-10 text-xs text-gray-500">
-              Trusted by growing businesses in Lusaka & beyond
-            </div>
+            <p className="mt-6 text-sm text-gray-500">
+              Works with your existing WhatsApp Business account
+            </p>
           </motion.div>
         </Container>
       </div>
@@ -114,29 +114,53 @@ function Hero() {
   );
 }
 
+// ================= OFFER =================
+
+function Offer() {
+  return (
+    <section className="py-24 border-t border-white/10">
+      <Container>
+        <h2 className="text-3xl font-semibold">
+          WhatsApp AI Automation Systems
+        </h2>
+
+        <p className="text-gray-400 mt-4 max-w-2xl">
+          We help businesses automate customer conversations using AI so they
+          never miss leads or sales opportunities again.
+        </p>
+
+        <div className="grid md:grid-cols-4 gap-4 mt-10 text-sm text-gray-300">
+          <div>Instant Replies</div>
+          <div>Lead Qualification</div>
+          <div>Auto Follow-ups</div>
+          <div>24/7 Sales Assistant</div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
 // ================= SERVICES =================
 
 function Services() {
-  const services = [
-    "Website Development",
-    "Business Automation",
-    "Custom Software",
-  ];
-
   return (
-    <section id="services" className="py-28">
+    <section id="services" className="py-24">
       <Container>
-        <h2 className="text-3xl font-semibold mb-12">Services</h2>
+        <h2 className="text-3xl font-semibold mb-10">Services</h2>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {services.map((s, i) => (
+          {[
+            "WhatsApp AI Automation",
+            "Business Workflow Systems",
+            "Custom Software Tools",
+          ].map((s) => (
             <div
-              key={i}
-              className="p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl hover:border-blue-500/30 transition"
+              key={s}
+              className="p-6 border border-white/10 rounded-2xl bg-white/5"
             >
-              <h3 className="text-xl font-medium mb-2">{s}</h3>
-              <p className="text-gray-400 text-sm">
-                Built for performance, scalability, and real-world business impact.
+              <h3 className="font-medium">{s}</h3>
+              <p className="text-gray-400 text-sm mt-2">
+                Built for real business operations and measurable results.
               </p>
             </div>
           ))}
@@ -149,27 +173,57 @@ function Services() {
 // ================= PROCESS =================
 
 function Process() {
-  const steps = ["Audit", "Build", "Scale"];
+  const steps = [
+    ["Audit", "We analyze your customer flow and bottlenecks"],
+    ["Build", "We deploy your WhatsApp AI system"],
+    ["Optimize", "We improve conversions and automation flows"],
+  ];
 
   return (
-    <section id="process" className="py-28 border-t border-white/10">
+    <section id="process" className="py-24 border-t border-white/10">
       <Container>
-        <h2 className="text-3xl font-semibold mb-12">How It Works</h2>
+        <h2 className="text-3xl font-semibold mb-10">Process</h2>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {steps.map((step, i) => (
-            <div
-              key={i}
-              className="p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl"
-            >
-              <h3 className="text-xl font-medium">{step}</h3>
-              <p className="text-gray-400 text-sm mt-2">
-                {step === "Audit" && "We analyze your systems and identify growth bottlenecks."}
-                {step === "Build" && "We design and develop your digital infrastructure."}
-                {step === "Scale" && "We optimize systems for long-term growth."}
-              </p>
+          {steps.map(([t, d]) => (
+            <div key={t} className="p-6 border border-white/10 rounded-2xl">
+              <h3 className="font-medium">{t}</h3>
+              <p className="text-gray-400 text-sm mt-2">{d}</p>
             </div>
           ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+// ================= TRUST =================
+
+function Trust() {
+  return (
+    <section className="py-24 border-t border-white/10">
+      <Container>
+        <div className="grid md:grid-cols-3 text-center gap-6">
+          <div>
+            <h3 className="font-semibold">Faster Responses</h3>
+            <p className="text-gray-400 text-sm mt-2">
+              Never miss a customer again
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold">More Sales</h3>
+            <p className="text-gray-400 text-sm mt-2">
+              Convert chats into paying customers
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold">Less Work</h3>
+            <p className="text-gray-400 text-sm mt-2">
+              Automate repetitive conversations
+            </p>
+          </div>
         </div>
       </Container>
     </section>
@@ -182,12 +236,13 @@ function CTA() {
   return (
     <section id="contact" className="py-28 text-center">
       <Container>
-        <h2 className="text-3xl font-semibold">Ready to scale?</h2>
+        <h2 className="text-3xl font-semibold">Book a Live Demo</h2>
         <p className="text-gray-400 mt-4">
-          Let’s build your digital system the right way.
+          See how your business can run on WhatsApp AI automation.
         </p>
-        <div className="mt-6">
-          <Button>Get Started</Button>
+
+        <div className="mt-8">
+          <Button>Book Demo</Button>
         </div>
       </Container>
     </section>
@@ -199,7 +254,7 @@ function CTA() {
 function Footer() {
   return (
     <footer className="border-t border-white/10 py-10 text-center text-gray-500 text-sm">
-      © {new Date().getFullYear()} NiftyServe. Built for modern African businesses.
+      © {new Date().getFullYear()} NiftyServe — WhatsApp AI Automation Systems
     </footer>
   );
 }
@@ -211,8 +266,10 @@ export default function Page() {
     <main className="bg-black text-white overflow-hidden">
       <Navbar />
       <Hero />
+      <Offer />
       <Services />
       <Process />
+      <Trust />
       <CTA />
       <Footer />
     </main>
