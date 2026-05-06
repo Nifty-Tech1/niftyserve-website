@@ -1,35 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import clsx from "clsx";
 import LightRays from "./LightRays";
 import React from "react";
+import { Button } from "../components/ui/Button";
+import { Card } from "../components/ui/Card";
 
 // ================= UI =================
 
 function Container({ children }: { children: React.ReactNode }) {
   return <div className="max-w-6xl mx-auto px-6 w-full">{children}</div>;
-}
-
-function Button({
-  children,
-  variant = "primary",
-}: {
-  children: React.ReactNode;
-  variant?: "primary" | "ghost";
-}) {
-  return (
-    <button
-      className={clsx(
-        "px-6 py-3 rounded-xl font-semibold transition active:scale-[0.98]",
-        variant === "primary" && "bg-blue-500 hover:bg-blue-600 text-white",
-        variant === "ghost" &&
-          "border border-white/20 hover:bg-white/10 text-white",
-      )}
-    >
-      {children}
-    </button>
-  );
 }
 
 // ================= NAV =================
@@ -38,16 +18,28 @@ function Navbar() {
   return (
     <div className="fixed top-0 w-full z-50 backdrop-blur-xl border-b border-white/10 bg-black/30">
       <Container>
-        <div className="flex items-center justify-between h-16">
-          <div className="font-semibold">NiftyServe</div>
-
+        <div className="flex items-center justify-between h-20 px-2">
+          <div className="font-bold text-lg tracking-tight">NiftyServe</div>
           <div className="hidden md:flex gap-8 text-sm text-gray-300">
-            <a href="#services">Services</a>
-            <a href="#process">Process</a>
-            <a href="#contact">Demo</a>
+            <a className="hover:text-white transition" href="#services">
+              Services
+            </a>
+            <a className="hover:text-white transition" href="#process">
+              Process
+            </a>
+            <a className="hover:text-white transition" href="#contact">
+              Demo
+            </a>
           </div>
-
-          <Button>Book Demo</Button>
+          <a
+            href="https://wa.me/260777781047?text=Hi%20I%20want%20a%20WhatsApp%20automation%20system"
+            target="_blank"
+            rel="noopener"
+          >
+            <Button variant="primary" className="hidden md:inline-flex">
+              Book Demo
+            </Button>
+          </a>
         </div>
       </Container>
     </div>
@@ -100,7 +92,13 @@ function Hero() {
             </p>
 
             <div className="mt-8 flex gap-4">
-              <Button>Book Demo</Button>
+              <a
+                href="https://wa.me/260777781047?text=Hi%20I%20want%20a%20WhatsApp%20automation%20system"
+                target="_blank"
+                rel="noopener"
+              >
+                <Button variant="primary">Book Demo</Button>
+              </a>
               <Button variant="ghost">View Services</Button>
             </div>
 
@@ -130,10 +128,10 @@ function Offer() {
         </p>
 
         <div className="grid md:grid-cols-4 gap-4 mt-10 text-sm text-gray-300">
-          <div>Instant Replies</div>
-          <div>Lead Qualification</div>
-          <div>Auto Follow-ups</div>
-          <div>24/7 Sales Assistant</div>
+          <Card variant="feature">Instant Replies</Card>
+          <Card variant="feature">Lead Qualification</Card>
+          <Card variant="feature">Auto Follow-ups</Card>
+          <Card variant="feature">24/7 Sales Assistant</Card>
         </div>
       </Container>
     </section>
@@ -154,15 +152,12 @@ function Services() {
             "Business Workflow Systems",
             "Custom Software Tools",
           ].map((s) => (
-            <div
-              key={s}
-              className="p-6 border border-white/10 rounded-2xl bg-white/5"
-            >
+            <Card key={s} variant="container">
               <h3 className="font-medium">{s}</h3>
               <p className="text-gray-400 text-sm mt-2">
                 Built for real business operations and measurable results.
               </p>
-            </div>
+            </Card>
           ))}
         </div>
       </Container>
@@ -186,10 +181,10 @@ function Process() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {steps.map(([t, d]) => (
-            <div key={t} className="p-6 border border-white/10 rounded-2xl">
+            <Card key={t} variant="feature">
               <h3 className="font-medium">{t}</h3>
               <p className="text-gray-400 text-sm mt-2">{d}</p>
-            </div>
+            </Card>
           ))}
         </div>
       </Container>
@@ -204,26 +199,24 @@ function Trust() {
     <section className="py-24 border-t border-white/10">
       <Container>
         <div className="grid md:grid-cols-3 text-center gap-6">
-          <div>
+          <Card variant="feature">
             <h3 className="font-semibold">Faster Responses</h3>
             <p className="text-gray-400 text-sm mt-2">
               Never miss a customer again
             </p>
-          </div>
-
-          <div>
+          </Card>
+          <Card variant="feature">
             <h3 className="font-semibold">More Sales</h3>
             <p className="text-gray-400 text-sm mt-2">
               Convert chats into paying customers
             </p>
-          </div>
-
-          <div>
+          </Card>
+          <Card variant="feature">
             <h3 className="font-semibold">Less Work</h3>
             <p className="text-gray-400 text-sm mt-2">
               Automate repetitive conversations
             </p>
-          </div>
+          </Card>
         </div>
       </Container>
     </section>
@@ -242,7 +235,13 @@ function CTA() {
         </p>
 
         <div className="mt-8">
-          <Button>Book Demo</Button>
+          <a
+            href="https://wa.me/260974164381?text=Hi%20I%20want%20a%20WhatsApp%20automation%20system"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="primary">Book Demo</Button>
+          </a>
         </div>
       </Container>
     </section>
