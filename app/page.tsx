@@ -236,7 +236,7 @@ function CTA() {
 
         <div className="mt-8">
           <a
-            href="https://wa.me/260974164381?text=Hi%20I%20want%20a%20WhatsApp%20automation%20system"
+            href="https://wa.me/260777781047?text=Hi%20I%20want%20a%20WhatsApp%20automation%20system"
             target="_blank"
             rel="noopener noreferrer"
           >
